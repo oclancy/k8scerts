@@ -1,0 +1,1 @@
+kubectl run perf-test --image=pivotalrabbitmq/perf-test -- --uri amqp://guest:guest@kubernetes.docker.internal

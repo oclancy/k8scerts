@@ -1,0 +1,3 @@
+
+express-otel-demo/node_modules/*
+express-otel-demo/package-lock.json

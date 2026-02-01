@@ -1,0 +1,2 @@
+helm repo add postgres https://raw.githubusercontent.com/hansehe/postgres-helm/master/helm/charts/postgres
+helm upgrade --install postgres postgres/postgres --create-namespace -n postgres -f postgres.yaml

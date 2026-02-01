@@ -1,0 +1,10 @@
+metricsGenerator:
+  enabled: true
+  config: 
+    storage:
+      path: /var/tempo/wal
+      wal_compression: snappy
+    processors:
+      - service-graphs
+      - span-metrics
+      - local-blocks

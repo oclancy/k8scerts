@@ -1,0 +1,57 @@
+auth:
+  adminUser: admin
+  adminPassword: admin
+
+ingress:
+  enabled: true
+  hostname: auth.local.test.com
+  ingressClassName: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: "selfsigned-clusterissuer"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  tls: true
+  extraTls:
+    - hosts:
+        - auth.local.test.com
+      secretName: keycloak-tls-secret
+
+keycloakConfigCli:
+  enabled: true
+  configuration:
+    dev.json: |
+      {
+        "realm": "dev",
+        "enabled": true,
+        "clients": [
+          {
+            "clientId": "Client1",
+            "enabled": true,
+            "directAccessGrantsEnabled": true,
+            "redirectUris": ["*"]
+          }
+        ],
+        "roles": {
+          "client": {
+            "Client1": [
+              {
+                "name": "role1"
+              }
+            ]
+          }
+        },
+        "users": [
+          {
+            "username": "oliver",
+            "enabled": true,
+            "credentials": [
+              {
+                "type": "password",
+                "value": "password"
+              }
+            ],
+            "clientRoles": {
+              "Client1": ["role1"]
+            }
+          }
+        ]
+      }
