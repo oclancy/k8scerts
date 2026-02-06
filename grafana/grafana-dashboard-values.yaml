@@ -1,0 +1,48 @@
+grafana.ini:
+  server:
+    domain: "local.test.com"
+    root_url: "%(protocol)s://%(domain)s:%(http_port)s/grafana"
+    serve_from_sub_path: true
+    
+sidecar:
+  dashboards:
+    enabled: true
+    label: grafana_dashboard
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        access: proxy
+        orgId: 1
+        url: http://prometheus-server
+        basicAuth: false
+        isDefault: true
+        version: 1
+        editable: false
+        apiVersion: 1
+        uid: prometheus
+      - name: Loki
+        type: loki
+        access: proxy
+        orgId: 1
+        url: http://loki:3100
+        basicAuth: false
+        isDefault: false
+        version: 1
+        editable: false
+        apiVersion: 1
+        uid: loki
+      - name: Tempo
+        type: tempo
+        access: proxy
+        orgId: 1
+        url: http://tempo:3100
+        basicAuth: false
+        isDefault: false
+        version: 1
+        editable: false
+        apiVersion: 1
+        uid: tempo

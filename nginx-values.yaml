@@ -4,3 +4,5 @@ controller:
       http: 8080
 tcp:
   5432: "postgres/postgres:5432"
+  5672: "rabbitmq/rabbitmq:5672"
+  15672: "rabbitmq/rabbitmq:15672"

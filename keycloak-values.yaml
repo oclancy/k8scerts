@@ -1,3 +1,11 @@
+global:
+  security:
+    allowInsecureImages: true
+    
+image:
+  repository: bitnamilegacy/keycloak
+  tag: latest
+
 auth:
   adminUser: admin
   adminPassword: admin
@@ -55,3 +63,27 @@ keycloakConfigCli:
           }
         ]
       }
+
+postgresql:
+  enabled: false
+
+externalDatabase:
+  host: "postgres.postgres.svc.cluster.local"
+  port: 5432
+  database: "keycloak"
+  username: "keycloak"
+  password: "keycloak"
+
+service:
+  type: LoadBalancer  # or ClusterIP with Ingress
+
+
+replicaCount: 1
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi

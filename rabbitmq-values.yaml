@@ -1,0 +1,23 @@
+global:
+  security:
+    allowInsecureImages: true
+    
+image:
+  repository: bitnamilegacy/rabbitmq
+  tag: latest
+
+auth:
+  username: guest
+  password: guest
+  erlangCookie: "secretcookie"
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+
+extraPlugins: "rabbitmq_management rabbitmq_amqp1_0"
+
+persistence:
+  enabled: true
+  size: 8Gi
